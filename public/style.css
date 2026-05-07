@@ -1,0 +1,355 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+body {
+  background: transparent;
+}
+
+/* Fixed 1920x1080 OBS canvas */
+.overlay {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Top title */
+header {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 1920px;
+  height: 70px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+  min-width: 520px;
+  padding: 13px 34px;
+
+  background: rgba(20, 20, 20, 0.94);
+  border: 2px solid rgba(255, 120, 24, 0.85);
+  border-radius: 12px;
+
+  color: #ffffff;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+
+  text-shadow:
+    0 0 7px rgba(255, 140, 52, 1),
+    0 0 16px rgba(255, 110, 24, 0.85);
+
+  box-shadow:
+    0 0 18px rgba(255, 110, 24, 0.45),
+    inset 0 0 18px rgba(255, 255, 255, 0.04);
+}
+
+/* Bracket area */
+.bracket {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  z-index: 2;
+
+  transform: translateX(-10px);
+}
+
+/* Wider spacing between columns */
+.round {
+  position: absolute;
+  width: 390px;
+}
+
+/* Top row */
+.round.winners-semis {
+  left: 40px;
+  top: 120px;
+}
+
+.round.winners-final {
+  left: 556px;
+  top: 203px;
+}
+
+.round.grand-final {
+  left: 1073px;
+  top: 204px;
+}
+
+.round.grand-final-reset {
+  left: 1520px;
+  top: 204px;
+}
+
+/* Bottom row */
+.round.losers-r1 {
+  left: 40px;
+  top: 585px;
+}
+
+.round.losers-r2 {
+  left: 556px;
+  top: 585px;
+}
+
+.round.losers-semis {
+  left: 1073px;
+  top: 666px;
+}
+
+.round.losers-final {
+  left: 1520px;
+  top: 666px;
+}
+
+/* Round title bars */
+.round-title {
+  height: 48px;
+  margin-bottom: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(18, 18, 18, 0.98);
+  border: 1px solid rgba(255, 130, 35, 0.95);
+  border-bottom: 5px solid #ff6a00;
+
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.105em;
+
+  text-shadow:
+    0 0 6px rgba(255, 150, 60, 0.95),
+    0 0 13px rgba(255, 120, 30, 0.72);
+
+  box-shadow:
+    0 0 10px rgba(255, 100, 0, 0.22),
+    inset 0 0 14px rgba(255, 255, 255, 0.025);
+}
+
+/* More vertical space between match boxes */
+.set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.round.winners-final .set-list,
+.round.grand-final .set-list,
+.round.losers-semis .set-list,
+.round.losers-final .set-list {
+  gap: 0;
+}
+
+/* Match box */
+.set {
+  position: relative;
+  width: 390px;
+  height: 92px;
+
+  border: 1px solid rgba(255, 130, 35, 0.95);
+  background: rgba(0, 0, 0, 0.28);
+
+  box-shadow:
+    0 0 13px rgba(255, 110, 25, 0.18),
+    inset 0 0 10px rgba(255, 255, 255, 0.025);
+}
+
+/* Horizontal connector leaving each set */
+.set::after {
+  content: "";
+  position: absolute;
+  right: -65px;
+  top: 48%;
+
+  width: 65px;
+  height: 4px;
+
+  background: rgba(255, 125, 35, 0.92);
+  box-shadow: 0 0 8px rgba(255, 125, 35, 0.9);
+}
+
+.round.losers-r1 .set::after,
+.round.winners-final .set::after{
+  width: 130px;
+  right: -130px;
+}
+
+/* No outgoing connector on final nodes */
+.round.grand-final-reset .set::after,
+.round.grand-final .set::after,
+.round.losers-final .set::after {
+  display: none;
+}
+
+/* Vertical connector joining two matches in two-set columns */
+.round.winners-semis .set:first-child::before,
+.round.losers-r2 .set:first-child::before {
+  content: "";
+  position: absolute;
+  right: -65px;
+  top: 50%;
+
+  width: 4px;
+  height: 160px;
+
+  background: rgba(255, 125, 35, 0.92);
+  box-shadow: 0 0 8px rgba(255, 125, 35, 0.9);
+}
+
+/* Incoming connector to single-match rounds */
+.round.winners-final::before,
+.round.losers-semis::before {
+  content: "";
+  position: absolute;
+  left: -65px;
+  top: 71%;
+
+  width: 65px;
+  height: 3px;
+
+  background: rgba(255, 125, 35, 0.92);
+  box-shadow: 0 0 8px rgba(255, 125, 35, 0.9);
+}
+
+.round.grand-final-reset::before{
+  content: "";
+  position: absolute;
+  left: -57px;
+  top: 71%;
+
+  width: 57px;
+  height: 3px;
+
+  background: rgba(255, 125, 35, 0.92);
+  box-shadow: 0 0 8px rgba(255, 125, 35, 0.9);
+}
+
+/* Player row */
+.player {
+  height: 45px;
+
+  display: grid;
+  grid-template-columns: 1fr 58px;
+  align-items: center;
+
+  background: rgba(232, 232, 232, 0.96);
+  color: #080808;
+
+  border-left: 1px solid rgba(255, 130, 35, 0.9);
+  border-right: 1px solid rgba(255, 130, 35, 0.9);
+  border-bottom: 1px solid rgba(255, 130, 35, 0.65);
+
+  font-size: 26px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.player:first-child {
+  border-top: 1px solid rgba(255, 130, 35, 0.9);
+}
+
+.player:last-child {
+  border-bottom: 1px solid rgba(255, 130, 35, 0.9);
+}
+
+.player-name {
+  min-width: 0;
+  padding: 0 18px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(12, 12, 12, 0.98);
+  color: #ffffff;
+
+  border-left: 1px solid rgba(255, 130, 35, 0.7);
+
+  font-size: 29px;
+  font-weight: 950;
+
+  text-shadow:
+    0 0 6px rgba(255, 140, 40, 0.95),
+    0 0 11px rgba(255, 100, 20, 0.75);
+}
+
+.player.winner .score {
+  color: #ff962b;
+}
+
+.player.empty {
+  opacity: 0.72;
+}
+
+.player.empty .player-name {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+.player.empty .score {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Missing/error state */
+.missing {
+  position: absolute;
+  left: 360px;
+  top: 300px;
+  width: 1200px;
+
+  background: rgba(0, 0, 0, 0.78);
+  border: 1px solid rgba(255, 122, 24, 0.5);
+  border-radius: 18px;
+  padding: 30px;
+
+  color: white;
+  font-size: 24px;
+}
+
+.missing code {
+  display: block;
+  margin: 16px 0;
+  padding: 14px;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffb16b;
+
+  word-break: break-all;
+}
