@@ -1,4 +1,4 @@
-# StartGGBracketOverlay
+# fgcBracketOverlay
 
 This repository provides a local OBS browser-source overlay intended to be a stream-friendly way for displaying start.gg tournament brackets.
 
