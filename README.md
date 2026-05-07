@@ -6,11 +6,10 @@ This repository provides a local OBS browser-source overlay intended to be a str
 
 ## Setup
 
-Clone the repository and install dependencies:
+Before running you need to have:
 
-```
-npm install
-```
+- Node.js installed
+- npm installed
 
 Paste your [personal access token](https://developer.start.gg/docs/authentication/) from start.gg in the .env file. 
 
