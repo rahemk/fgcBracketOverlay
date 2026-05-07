@@ -49,5 +49,3 @@ The overlay is designed around a fixed `1920x1080` OBS canvas.
 
 If the overlay looks cropped in a normal browser window, this is expected. OBS should still display it correctly when the Browser Source is set to `1920x1080`.
 
-For browser testing, you can use preview mode by adding:
-
